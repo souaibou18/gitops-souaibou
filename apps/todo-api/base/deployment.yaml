@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: todo-api
-        image: ghcr.io/[votre-org]/todo-api:latest
+        image: ghcr.io/souaibou18/todo-api:latest
         ports:
         - containerPort: 3000
           name: http
