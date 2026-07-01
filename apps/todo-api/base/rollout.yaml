@@ -1,5 +1,5 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: todo-api
   labels:
@@ -32,3 +32,13 @@ spec:
           limits:
             cpu: "500m"
             memory: "256Mi"
+  strategy:
+    canary:
+      steps:
+      - setWeight: 20
+      - pause:
+          duration: 20s
+      - setWeight: 50
+      - pause:
+          duration: 20s
+      - setWeight: 100
