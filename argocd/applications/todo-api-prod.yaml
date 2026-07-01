@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: todo-api-dev
+  name: todo-api-prod
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/souaibou18/gitops-souaibou
     targetRevision: HEAD
-    path: apps/todo-api/overlays/dev
+    path: apps/todo-api/overlays/prod
   destination:
     server: https://kubernetes.default.svc
-    namespace: todo-api-dev
+    namespace: todo-api-prod
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
