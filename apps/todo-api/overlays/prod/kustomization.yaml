@@ -8,9 +8,10 @@ resources:
 
 nameSuffix: -prod
 
-commonLabels:
-  environment: prod
+labels:
+  - pairs:
+      environment: prod
+    includeSelectors: true
 
-replicas:
-  - name: todo-api
-    count: 3
+patches:
+  - path: patch-replicas.yaml
