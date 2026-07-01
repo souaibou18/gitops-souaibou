@@ -4,18 +4,14 @@ kind: Kustomization
 namespace: todo-api-prod
 
 resources:
-- ../../base
+  - ../../base
 
 nameSuffix: -prod
 
 labels:
-- includeSelectors: true
-  pairs:
-    environment: prod
+  - pairs:
+      environment: prod
+    includeSelectors: true
 
 patches:
-- path: patch-replicas.yaml
-images:
-- name: nginx
-  newName: nginx
-  newTag: "1.25"
+  - path: patch-replicas.yaml
