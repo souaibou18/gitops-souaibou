@@ -12,6 +12,7 @@ labels:
   - pairs:
       environment: prod
     includeSelectors: true
+    includeTemplates: true
 
 patches:
   - path: patch-replicas.yaml
