@@ -1,0 +1,30 @@
+name: Update image tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: "New image tag"
+        required: true
+        default: "latest"
+
+jobs:
+  update-gitops:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Update dev image tag
+        run: |
+          cd apps/todo-api/overlays/dev
+          kustomize edit set image nginx=nginx:${{ github.event.inputs.image_tag }}
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add apps/todo-api/overlays/dev/kustomization.yaml
+          git commit -m "Update dev image tag to ${{ github.event.inputs.image_tag }}" || echo "No changes"
+          git push
