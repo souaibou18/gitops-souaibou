@@ -8,6 +8,9 @@ on:
         required: true
         default: "latest"
 
+permissions:
+  contents: write
+
 jobs:
   update-gitops:
     runs-on: ubuntu-latest
@@ -15,6 +18,11 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+
+      - name: Install kustomize
+        run: |
+          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+          sudo mv kustomize /usr/local/bin/
 
       - name: Update dev image tag
         run: |
