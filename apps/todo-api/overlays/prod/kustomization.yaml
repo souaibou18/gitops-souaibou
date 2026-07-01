@@ -11,8 +11,7 @@ nameSuffix: -prod
 labels:
   - pairs:
       environment: prod
-    includeSelectors: true
-    includeTemplates: true
+    includeSelectors: false
 
 patches:
   - path: patch-replicas.yaml
