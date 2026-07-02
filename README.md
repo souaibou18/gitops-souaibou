@@ -1,5 +1,3 @@
-# Projet Fil Rouge - GitOps Todo API
-
 # GitOps Souaibou — Fil Rouge DevOps / GitOps / Kubernetes
 
 Ce dépôt contient la mise en œuvre d’un **fil rouge DevOps / GitOps** basé sur **Kubernetes**, **Argo CD**, **Argo Rollouts**, **Prometheus/Grafana**, **Terraform**, **FluxCD + Tofu Controller**, **Ingress NGINX**, **HPA**, **NetworkPolicies** et **Sealed Secrets**.
