@@ -8,7 +8,9 @@ terraform {
 }
 
 provider "kubernetes" {
-  config_path = "/tmp/kubeconfig"
+  host                   = "https://kubernetes.default.svc"
+  token                  = file("/var/run/secrets/kubernetes.io/serviceaccount/token")
+  cluster_ca_certificate = file("/var/run/secrets/kubernetes.io/serviceaccount/ca.crt")
 }
 
 resource "kubernetes_namespace" "gitops_iac" {
