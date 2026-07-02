@@ -18,7 +18,7 @@ spec:
       - name: todo-api
         image: zolda/todo-api:1.0.0
         ports:
-        - containerPort: 80
+        - containerPort: 3000
           name: http
         env:
         - name: DATABASE_URL
