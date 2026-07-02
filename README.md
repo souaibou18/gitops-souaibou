@@ -155,4 +155,64 @@ un rollback GitOps ;
 une ressource gérée par Terraform ;
 une stack de monitoring Prometheus/Grafana.
 
+## Ingress NGINX
+
+L'application `todo-api-prod` est exposée via un Ingress NGINX.
+
+Vérification :
+
+```bash
+kubectl get ingress -n todo-api-prod
+
+Test local :
+kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 8081:80
+curl -H "Host: todo.local" http://localhost:8081
+
+Horizontal Pod Autoscaler
+
+Un HPA est configuré sur le Rollout de production.
+kubectl get hpa -n todo-api-prod
+kubectl top pods -n todo-api-prod
+
+Configuration :
+minReplicas: 3
+maxReplicas: 8
+targetCPU: 60%
+
+Secrets Kubernetes
+
+Un Secret Kubernetes est utilisé pour injecter la variable DATABASE_URL dans le Rollout.
+kubectl get secret -n todo-api-prod
+kubectl describe rollout todo-api-prod -n todo-api-prod | grep -A5 DATABASE_URL
+Le Secret est utilisé via secretKeyRef.
+
+NetworkPolicy
+
+Une NetworkPolicy sécurise le trafic entrant vers les pods todo-api.
+
+kubectl get networkpolicy -n todo-api-prod
+kubectl describe networkpolicy todo-api-network-policy-prod -n todo-api-prod
+Test après application :
+
+curl -H "Host: todo.local" http://localhost:8081
+
+Commandes de démonstration finale
+argocd app get todo-api-dev
+argocd app get todo-api-prod
+
+kubectl get all -n todo-api-prod
+kubectl argo rollouts get rollout todo-api-prod -n todo-api-prod
+
+kubectl get ingress -n todo-api-prod
+curl -H "Host: todo.local" http://localhost:8081
+
+kubectl get hpa -n todo-api-prod
+kubectl top pods -n todo-api-prod
+
+kubectl get secret -n todo-api-prod
+kubectl get networkpolicy -n todo-api-prod
+
+kubectl get namespace demo-iac
+kubectl get pods -n monitoring
+
 # gitops-souaibou
