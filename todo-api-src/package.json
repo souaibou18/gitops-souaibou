@@ -1,7 +1,7 @@
 {
-  "name": "todo-api",
+  "name": "jump-dash",
   "version": "1.0.0",
-  "description": "Simple Todo API for GitOps fil rouge",
+  "description": "Jump Dash mini game with score API for GitOps fil rouge",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
