@@ -21,6 +21,11 @@ spec:
         - containerPort: 80
           name: http
         env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: todo-api-secret
+              key: DATABASE_URL
         - name: PORT
           value: "3000"
         - name: NODE_ENV
