@@ -15,3 +15,4 @@ labels:
 
 patches:
   - path: patch-replicas.yaml
+  - path: patch-hpa.yaml
