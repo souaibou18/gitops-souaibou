@@ -1,0 +1,15 @@
+apiVersion: infra.contrib.fluxcd.io/v1alpha2
+kind: Terraform
+metadata:
+  name: demo-namespace
+  namespace: flux-system
+spec:
+  interval: 1m
+  approvePlan: auto
+  path: ./infrastructure/tf-controller/demo-namespace
+  sourceRef:
+    kind: GitRepository
+    name: gitops-souaibou
+    namespace: flux-system
+  storeReadablePlan: human
+  destroyResourcesOnDeletion: true
