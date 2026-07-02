@@ -5,6 +5,7 @@ namespace: todo-api-prod
 
 resources:
   - ../../base
+  - sealed-secret.yaml
 
 nameSuffix: -prod
 

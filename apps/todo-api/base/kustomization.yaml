@@ -5,5 +5,4 @@ resources:
 - service.yaml
 - ingress.yaml
 - hpa.yaml
-- sealed-secret.yaml
 - networkpolicy.yaml
