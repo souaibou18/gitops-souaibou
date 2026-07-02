@@ -24,7 +24,7 @@ spec:
         - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
-              name: todo-api-secret
+              name: todo-api-secret-prod
               key: DATABASE_URL
         - name: PORT
           value: "3000"
